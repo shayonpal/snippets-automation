@@ -7,9 +7,9 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 import logging
 
-from .alfred_utils import AlfredUtils
-from .claude_api import ClaudeAPI, SnippetSuggestion
-from .exceptions import (
+from alfred_utils import AlfredUtils
+from claude_api import ClaudeAPI, SnippetSuggestion
+from exceptions import (
     SnippetError, 
     DuplicateSnippetError, 
     ValidationError,

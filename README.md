@@ -54,19 +54,26 @@ If AI categorization fails or confidence is low:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/snippets-automation.git
+git clone https://github.com/shayonpal/snippets-automation.git
 cd snippets-automation
 ```
 
-2. Install dependencies:
+2. Create and activate virtual environment:
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
+3. Create `.env` file with your configuration:
 ```bash
-export ANTHROPIC_API_KEY="your-api-key-here"
-export ALFRED_SNIPPETS_PATH="/Users/shayon/Documents/~App Settings [on iCloud]/Alfred.alfredpreferences/snippets"
+cp .env.example .env
+# Edit .env with your actual API key and Alfred snippets path
+```
+
+4. Make the run script executable:
+```bash
+chmod +x run.sh
 ```
 
 ## Usage
@@ -76,7 +83,7 @@ export ALFRED_SNIPPETS_PATH="/Users/shayon/Documents/~App Settings [on iCloud]/A
 Create snippets from a JSON file:
 
 ```bash
-python batch_create_alfred_snippets.py input_snippets.json
+./run.sh python3 scripts/batch_create_alfred_snippets.py input_snippets.json
 ```
 
 #### JSON Schema Example
@@ -104,12 +111,12 @@ python batch_create_alfred_snippets.py input_snippets.json
 
 #### From Clipboard
 ```bash
-python add_alfred_snippet.py
+./run.sh python3 scripts/add_alfred_snippet.py
 ```
 
 #### From Parameter (Raycast Integration)
 ```bash
-python add_alfred_snippet.py "your snippet content here"
+./run.sh python3 scripts/add_alfred_snippet.py "your snippet content here"
 ```
 
 ### Raycast Quicklink Setup

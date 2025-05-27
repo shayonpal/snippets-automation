@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 import re
 
-from .exceptions import AlfredFolderError, ValidationError, SnippetError
+from exceptions import AlfredFolderError, ValidationError, SnippetError
 
 
 class AlfredUtils:

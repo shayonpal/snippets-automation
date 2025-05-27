@@ -9,7 +9,7 @@ from typing import Dict, List, Optional, Any
 import requests
 from dataclasses import dataclass
 
-from .exceptions import APIError, NetworkError, RateLimitError, ValidationError
+from exceptions import APIError, NetworkError, RateLimitError, ValidationError
 
 
 @dataclass

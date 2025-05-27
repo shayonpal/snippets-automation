@@ -78,6 +78,8 @@ snippets-automation/
 - Validate Alfred snippets folder exists and is writable
 - Create collection folders if they don't exist
 - Generate proper UUIDs for snippet identification
+- Use `python3` to run the script instead of `python`
+- Use `pip3` to install dependencies instead of `pip`
 
 ### 4. AI Integration Patterns
 
