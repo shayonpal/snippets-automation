@@ -238,6 +238,95 @@ For debugging, add `--verbose` to any command:
 ./run.sh python3 scripts/add_alfred_snippet.py "test content" --verbose
 ```
 
+## LLM-Assisted Snippet Generation
+
+### Prompt for Auto-Generating Snippets
+
+Use this prompt with any LLM to automatically generate snippet collections based on the example file format:
+
+```
+I need you to generate a JSON file containing Alfred snippets for [TOPIC/CATEGORY]. Please analyze the attached reference file to understand the structure and naming conventions.
+
+Requirements:
+- Generate 15-20 useful snippets for [TOPIC/CATEGORY]
+- Follow the exact JSON structure from the reference file
+- Use consistent naming conventions:
+  - Collection: Title Case (e.g., "Git", "Docker", "Python")
+  - Name: "Collection: Descriptive Name" format
+  - Keyword: lowercase with topic prefix (e.g., "git_command", "docker_run")
+  - Content: Practical, real-world commands/code
+- Include both basic and advanced use cases
+- Ensure keywords are unique and memorable
+- Make descriptions concise but helpful
+
+Topics to consider:
+- Git commands and workflows
+- Docker operations and management
+- Python/JavaScript code patterns
+- Terminal/shell commands
+- Database queries (SQL, MongoDB)
+- AWS CLI commands
+- Kubernetes operations
+- Development workflows
+- System administration tasks
+- Text processing commands
+
+Please output ONLY the JSON in the expected format below.
+```
+
+### Expected JSON Output Format
+
+```json
+{
+  "snippets": [
+    {
+      "name": "Git: Interactive Rebase",
+      "keyword": "git_rebase_interactive",
+      "snippet": "git rebase -i HEAD~3",
+      "collection": "Git"
+    },
+    {
+      "name": "Docker: Run with Volume Mount",
+      "keyword": "docker_run_volume",
+      "snippet": "docker run -it --rm -v $(pwd):/workspace -w /workspace ubuntu:latest bash",
+      "collection": "Docker"
+    },
+    {
+      "name": "Python: List Comprehension with Filter",
+      "keyword": "py_list_comp_filter",
+      "snippet": "result = [x for x in items if condition(x)]",
+      "collection": "Python"
+    },
+    {
+      "name": "Terminal: Find Large Files",
+      "keyword": "term_find_large",
+      "snippet": "find . -type f -size +100M -exec ls -lh {} \\; | awk '{ print $9 \": \" $5 }'",
+      "collection": "Terminal"
+    },
+    {
+      "name": "SQL: Window Function Example",
+      "keyword": "sql_window_func",
+      "snippet": "SELECT id, name, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM employees;",
+      "collection": "SQL"
+    }
+  ]
+}
+```
+
+### Using Generated Snippets
+
+1. **Generate with LLM**: Use the prompt above with your preferred LLM
+2. **Save output**: Save the JSON to a file (e.g., `my_snippets.json`)
+3. **Import**: Run the batch script:
+   ```bash
+   ./run.sh python3 scripts/batch_create_alfred_snippets.py my_snippets.json
+   ```
+
+### Reference Files
+
+- `docs/starter_snippets_wrapper.json` - Example Tasks plugin snippets
+- `examples/sample_snippets.json` - Mixed examples with various formats
+
 ## Future Extensibility
 
 The modular design supports future enhancements:
