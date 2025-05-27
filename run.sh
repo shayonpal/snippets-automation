@@ -16,5 +16,13 @@ if [ -f "$SCRIPT_DIR/.env" ]; then
     set +a  # turn off automatic export
 fi
 
+# Change to script directory to ensure correct paths
+cd "$SCRIPT_DIR"
+
 # Run the command with arguments
-exec "$@"
+if [ $# -eq 0 ]; then
+    # If no arguments provided, run the ad hoc script to read from clipboard
+    exec python3 scripts/add_alfred_snippet.py
+else
+    exec "$@"
+fi
