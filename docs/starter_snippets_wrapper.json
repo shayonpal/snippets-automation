@@ -1,0 +1,112 @@
+{
+  "snippets": [
+    {
+      "name": "Tasks: Basic Query",
+      "keyword": "tasks_basic",
+      "snippet": "```tasks\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Due Before Today",
+      "keyword": "tasks_due_before_today",
+      "snippet": "```tasks\ndue on or before today\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Starts Before Date",
+      "keyword": "tasks_starts_before_date",
+      "snippet": "```tasks\nstarts before 2023-04-20\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Due This Week",
+      "keyword": "tasks_due_this_week",
+      "snippet": "```tasks\ndue this week\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Due Date Range",
+      "keyword": "tasks_due_range",
+      "snippet": "```tasks\ndue 2023-11-25 2023-11-30\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Happens This Week",
+      "keyword": "tasks_happens_this_week",
+      "snippet": "```tasks\nhappens this week\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: No Due Date",
+      "keyword": "tasks_no_due_date",
+      "snippet": "```tasks\nno due date\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Has Due Date",
+      "keyword": "tasks_has_due_date",
+      "snippet": "```tasks\nhas due date\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Filter by Heading",
+      "keyword": "tasks_heading_includes",
+      "snippet": "heading includes <search text>",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Filter by Tag",
+      "keyword": "tasks_tag_include",
+      "snippet": "tags include #<tag>",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Status Name Does Not Include",
+      "keyword": "tasks_status_name_not_question",
+      "snippet": "status.name does not include question",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Status Type TODO",
+      "keyword": "tasks_status_type_todo",
+      "snippet": "status.type is TODO",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Status Type Done",
+      "keyword": "tasks_status_type_done",
+      "snippet": "status.type is DONE",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Not Done",
+      "keyword": "tasks_not_done",
+      "snippet": "filter by function ! task.isDone",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Done",
+      "keyword": "tasks_done",
+      "snippet": "filter by function task.isDone",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Path Includes",
+      "keyword": "tasks_path_includes",
+      "snippet": "path includes <folder or note>",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Multiple Filters Example",
+      "keyword": "tasks_multiple_filters",
+      "snippet": "```tasks\n(no due date) OR (due after 2021-04-04)\npath includes GitHub\n```",
+      "collection": "Tasks"
+    },
+    {
+      "name": "Tasks: Custom Filter Function",
+      "keyword": "tasks_custom_filter",
+      "snippet": "filter by function task.due.format('dddd') === 'Tuesday'",
+      "collection": "Tasks"
+    }
+  ]
+}

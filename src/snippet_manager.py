@@ -186,12 +186,13 @@ class SnippetManager:
         
         for i, snippet_data in enumerate(snippets):
             try:
-                # Validate snippet has content
-                if 'content' not in snippet_data:
-                    raise ValidationError(f"Snippet {i+1}: Missing 'content' field")
+                # Get content from either 'content' or 'snippet' field for compatibility
+                content = snippet_data.get('content') or snippet_data.get('snippet')
+                if not content:
+                    raise ValidationError(f"Snippet {i+1}: Missing 'content' or 'snippet' field")
                 
                 result = self.create_snippet(
-                    content=snippet_data['content'],
+                    content=content,
                     name=snippet_data.get('name'),
                     keyword=snippet_data.get('keyword'),
                     collection=snippet_data.get('collection'),

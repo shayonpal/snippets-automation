@@ -85,11 +85,17 @@ def validate_snippet_schema(snippet: dict, index: int) -> None:
     if not isinstance(snippet, dict):
         raise ValueError(f"Snippet {index + 1}: Must be an object")
     
-    if 'content' not in snippet:
-        raise ValueError(f"Snippet {index + 1}: Missing required 'content' field")
+    # Check for content field (support both 'content' and 'snippet' for compatibility)
+    content_field = None
+    if 'content' in snippet:
+        content_field = 'content'
+    elif 'snippet' in snippet:
+        content_field = 'snippet'
+    else:
+        raise ValueError(f"Snippet {index + 1}: Missing required 'content' or 'snippet' field")
     
-    if not snippet['content'] or not str(snippet['content']).strip():
-        raise ValueError(f"Snippet {index + 1}: 'content' cannot be empty")
+    if not snippet[content_field] or not str(snippet[content_field]).strip():
+        raise ValueError(f"Snippet {index + 1}: '{content_field}' cannot be empty")
     
     # Optional fields validation
     optional_fields = ['name', 'keyword', 'collection', 'description']
@@ -145,11 +151,13 @@ JSON File Format:
       "description": "Display last 10 commits in a pretty format"
     },
     {
-      "content": "echo 'Hello World'",
-      "suggested_collection": "Terminal"
+      "snippet": "echo 'Hello World'",
+      "collection": "Terminal"
     }
   ]
 }
+
+Note: Both 'content' and 'snippet' fields are supported for compatibility.
         """
     )
     
