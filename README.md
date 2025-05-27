@@ -76,7 +76,44 @@ cp .env.example .env
 chmod +x run.sh
 ```
 
+5. Validate system setup:
+```bash
+./run.sh python3 -c "
+import sys; sys.path.insert(0, 'src')
+from snippet_manager import SnippetManager
+manager = SnippetManager()
+validation = manager.validate_setup()
+print(f'Alfred folder: {validation[\"alfred_folder\"]}')
+print(f'API connection: {validation[\"api_connection\"]}')
+print(f'Collections: {validation[\"collections_count\"]}')
+print(f'Existing snippets: {validation[\"snippets_count\"]}')
+print('✅ Ready to use!' if not validation['errors'] else f'❌ Errors: {validation[\"errors\"]}')
+"
+```
+
 ## Usage
+
+### Quick Start
+
+**Create snippet from clipboard:**
+```bash
+./run.sh python3 scripts/add_alfred_snippet.py
+```
+
+**Create snippet with content:**
+```bash
+./run.sh python3 scripts/add_alfred_snippet.py "echo 'Hello World'"
+```
+
+**Process starter snippets:**
+```bash
+./run.sh python3 scripts/batch_create_alfred_snippets.py docs/starter_snippets_wrapper.json
+```
+
+**Process example snippets:**
+```bash
+./run.sh python3 scripts/batch_create_alfred_snippets.py examples/sample_snippets.json
+```
 
 ### Batch Creation
 
@@ -123,9 +160,11 @@ Create snippets from a JSON file:
 
 Create a Raycast Quicklink with:
 - **Name**: Add Alfred Snippet
-- **Link**: `file:///path/to/add_alfred_snippet.py?arguments={Query}`
+- **Link**: `file:///Users/shayon/DevProjects/snippets-automation/run.sh?arguments=python3 scripts/add_alfred_snippet.py {Query}`
 - **Title**: Add Alfred Snippet
 - **Description**: Create a new Alfred snippet with AI categorization
+
+For detailed Raycast setup instructions, see `examples/raycast_setup.md`.
 
 ## Alfred Integration
 
@@ -165,6 +204,39 @@ The system includes robust error handling for:
 - API keys are read from environment variables only
 - No credentials are stored in code or logs
 - Snippet content is analyzed but not stored by the API service
+
+## Troubleshooting
+
+### Common Issues
+
+**Environment variables not found:**
+```bash
+# Make sure .env file exists and is properly formatted
+cp .env.example .env
+# Edit .env with your actual values
+```
+
+**Permission denied:**
+```bash
+chmod +x run.sh
+```
+
+**API connection failed:**
+- Verify your `ANTHROPIC_API_KEY` is correct
+- Check internet connectivity
+- The system will fall back to manual input if API fails
+
+**Alfred folder not accessible:**
+- Verify the `ALFRED_SNIPPETS_PATH` in your `.env` file
+- Ensure Alfred is installed and has created the snippets folder
+- Check folder permissions
+
+### Verbose Output
+
+For debugging, add `--verbose` to any command:
+```bash
+./run.sh python3 scripts/add_alfred_snippet.py "test content" --verbose
+```
 
 ## Future Extensibility
 
