@@ -1,0 +1,49 @@
+{
+  "snippets": [
+    {
+      "content": "git log --oneline --graph --decorate --all -n 10",
+      "name": "Git: Pretty Log",
+      "keyword": "git_log5",
+      "collection": "Git",
+      "description": "Display last 10 commits in a pretty format with graph"
+    },
+    {
+      "content": "git status --porcelain",
+      "name": "Git: Status Porcelain",
+      "keyword": "git_status_short",
+      "collection": "Git",
+      "description": "Show git status in short format"
+    },
+    {
+      "content": "TABLE without ID\nFROM #project\nWHERE status = \"active\"\nSORT priority DESC",
+      "name": "Dataview: Active Projects",
+      "keyword": "dv_projects_active",
+      "collection": "Dataview",
+      "description": "List all active projects sorted by priority"
+    },
+    {
+      "content": "LIST\nFROM #meeting\nWHERE date(file.ctime) = date(today)\nSORT file.ctime DESC",
+      "name": "Dataview: Today's Meetings",
+      "keyword": "dv_meetings_today",
+      "collection": "Dataview",
+      "description": "Show meetings created today"
+    },
+    {
+      "content": "find . -name \"*.log\" -mtime +7 -delete",
+      "name": "Terminal: Clean Old Logs",
+      "keyword": "term_clean_logs",
+      "collection": "Terminal",
+      "description": "Delete log files older than 7 days"
+    },
+    {
+      "content": "ps aux | grep -v grep | grep",
+      "suggested_collection": "Terminal"
+    },
+    {
+      "content": "docker ps -a --format \"table {{.Names}}\\t{{.Status}}\\t{{.Ports}}\""
+    },
+    {
+      "content": "#!/bin/bash\necho \"Starting backup...\"\ntar -czf backup-$(date +%Y%m%d).tar.gz /important/data\necho \"Backup complete!\""
+    }
+  ]
+}
