@@ -98,11 +98,15 @@ print('✅ Ready to use!' if not validation['errors'] else f'❌ Errors: {valida
 **Create snippet from clipboard:**
 ```bash
 ./run.sh python3 scripts/add_alfred_snippet.py
+# Or more simply:
+./run.sh
 ```
 
 **Create snippet with content:**
 ```bash
 ./run.sh python3 scripts/add_alfred_snippet.py "echo 'Hello World'"
+# Or more simply:
+./run.sh --add echo 'Hello World'
 ```
 
 **Process starter snippets:**
@@ -154,13 +158,15 @@ Create snippets from a JSON file:
 #### From Parameter (Raycast Integration)
 ```bash
 ./run.sh python3 scripts/add_alfred_snippet.py "your snippet content here"
+# Or more simply:
+./run.sh --add your snippet content here
 ```
 
 ### Raycast Quicklink Setup
 
 Create a Raycast Quicklink with:
 - **Name**: Add Alfred Snippet
-- **Link**: `file:///Users/shayon/DevProjects/snippets-automation/run.sh?arguments=python3 scripts/add_alfred_snippet.py {Query}`
+- **Link**: `file:///Users/shayon/DevProjects/snippets-automation/run.sh?arguments=--add {Query}`
 - **Title**: Add Alfred Snippet
 - **Description**: Create a new Alfred snippet with AI categorization
 
