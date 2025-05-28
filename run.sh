@@ -23,6 +23,12 @@ cd "$SCRIPT_DIR"
 if [ $# -eq 0 ]; then
     # If no arguments provided, run the ad hoc script to read from clipboard
     exec python3 scripts/add_alfred_snippet.py
+elif [ "$1" = "--add" ]; then
+    # If --add flag is provided, use the rest of the arguments as the snippet content
+    shift  # Remove the --add flag from arguments
+    # Combine all remaining arguments without requiring quotes
+    content="$*"
+    exec python3 scripts/add_alfred_snippet.py "$content"
 else
     exec "$@"
 fi
