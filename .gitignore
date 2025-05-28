@@ -27,3 +27,6 @@ __pycache__/
 # Test files
 test_*.py
 *_test.py
+
+# Temporary cleanup folder
+temp_cleanup/
