@@ -97,17 +97,21 @@ def prompt_user_choice(prompt: str, choices: list, allow_new: bool = False) -> s
             if 1 <= choice_num <= len(choices):
                 return choices[choice_num - 1]
             elif allow_new and choice_num == len(choices) + 1:
-                new_value = input("Enter new value: ").strip()
-                if new_value:
-                    return new_value
-                else:
-                    print("Value cannot be empty. Please try again.")
+                try:
+                    new_value = input("Enter new value: ").strip()
+                    if new_value:
+                        return new_value
+                    else:
+                        print("Value cannot be empty. Please try again.")
+                except (KeyboardInterrupt, EOFError):
+                    print("\n\nOperation cancelled by user.")
+                    sys.exit(1)
             else:
                 print(f"Invalid choice. Please enter a number between 1 and {len(choices) + (1 if allow_new else 0)}")
                 
         except ValueError:
             print("Please enter a valid number.")
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, EOFError):
             print("\n\nOperation cancelled by user.")
             sys.exit(1)
 
@@ -138,25 +142,41 @@ def prompt_manual_metadata(content: str, collections: list) -> dict:
             allow_new=True
         )
     else:
-        collection = input("\nEnter collection name: ").strip()
-        while not collection:
-            print("Collection name cannot be empty.")
-            collection = input("Enter collection name: ").strip()
+        try:
+            collection = input("\nEnter collection name: ").strip()
+            while not collection:
+                print("Collection name cannot be empty.")
+                collection = input("Enter collection name: ").strip()
+        except (KeyboardInterrupt, EOFError):
+            print("\n\nOperation cancelled by user.")
+            sys.exit(1)
     
     # Name
-    name = input(f"\nEnter snippet name (e.g., '{collection}: Description'): ").strip()
-    while not name:
-        print("Snippet name cannot be empty.")
-        name = input("Enter snippet name: ").strip()
+    try:
+        name = input(f"\nEnter snippet name (e.g., '{collection}: Description'): ").strip()
+        while not name:
+            print("Snippet name cannot be empty.")
+            name = input("Enter snippet name: ").strip()
+    except (KeyboardInterrupt, EOFError):
+        print("\n\nOperation cancelled by user.")
+        sys.exit(1)
     
     # Keyword
-    keyword = input(f"\nEnter keyword (e.g., '{collection.lower()}_function'): ").strip()
-    while not keyword:
-        print("Keyword cannot be empty.")
-        keyword = input("Enter keyword: ").strip()
+    try:
+        keyword = input(f"\nEnter keyword (e.g., '{collection.lower()}_function'): ").strip()
+        while not keyword:
+            print("Keyword cannot be empty.")
+            keyword = input("Enter keyword: ").strip()
+    except (KeyboardInterrupt, EOFError):
+        print("\n\nOperation cancelled by user.")
+        sys.exit(1)
     
     # Description (optional)
-    description = input("\nEnter description (optional): ").strip()
+    try:
+        description = input("\nEnter description (optional): ").strip()
+    except (KeyboardInterrupt, EOFError):
+        print("\n\nOperation cancelled by user.")
+        sys.exit(1)
     
     return {
         'collection': collection,

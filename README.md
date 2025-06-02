@@ -259,24 +259,10 @@ Requirements:
 - Ensure keywords are unique and memorable
 - Make descriptions concise but helpful
 
-Topics to consider:
-- Git commands and workflows
-- Docker operations and management
-- Python/JavaScript code patterns
-- Terminal/shell commands
-- Database queries (SQL, MongoDB)
-- AWS CLI commands
-- Kubernetes operations
-- Development workflows
-- System administration tasks
-- Text processing commands
-
 Please output ONLY the JSON in the expected format below.
-```
 
 ### Expected JSON Output Format
 
-```json
 {
   "snippets": [
     {

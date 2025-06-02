@@ -9,6 +9,7 @@ This document contains step-by-step instructions and best practices for Claude t
 **Key Requirements**:
 - Batch creation from JSON files
 - Ad hoc creation via Raycast integration
+- PopClip integration for direct snippet creation from text selections
 - AI-powered categorization and metadata generation
 - Robust error handling and user prompts
 - Alfred compatibility and folder structure management
@@ -80,6 +81,36 @@ snippets-automation/
 - Generate proper UUIDs for snippet identification
 - Use `python3` to run the script instead of `python`
 - Use `pip3` to install dependencies instead of `pip`
+
+### 4.5. Runner Script (run.sh) Usage
+
+**Script Capabilities**:
+- Handles unquoted arguments with spaces and special characters
+- Automatically activates virtual environment and loads .env variables
+- Supports multiple execution modes
+
+**Usage Patterns**:
+```bash
+# Interactive snippet creation from clipboard
+./run.sh
+
+# Direct content creation (no quotes needed)
+./run.sh 158, Front St E, Toronto ON M5A 0K9
+./run.sh git status --porcelain
+
+# Explicit Python script execution
+./run.sh python3 scripts/add_alfred_snippet.py --help
+./run.sh python3 scripts/batch_import.py data.json
+
+# Help and documentation
+./run.sh --help
+```
+
+**Argument Handling Logic**:
+- If no arguments: runs interactive clipboard mode
+- If first arg is `python3` or `bash`: executes as command with all arguments
+- Otherwise: treats all arguments as content string for snippet creation (using `"$*"`)
+- Handles EOF/Ctrl-C gracefully in interactive mode
 
 ### 4. AI Integration Patterns
 
@@ -205,7 +236,7 @@ class DuplicateSnippetError(SnippetError): pass
 **Phase 3 (P2 Issues)**:
 1. Advanced categorization features
 2. Performance optimizations
-3. Additional input sources
+3. Additional input sources (PopClip integration)
 4. Documentation and examples
 
 ### 10. Code Review Checklist
@@ -246,3 +277,22 @@ class DuplicateSnippetError(SnippetError): pass
 - Validate JSON structure before writing
 
 Remember: Always reference GitHub issues in commits, follow the established patterns, and prioritize user experience over feature complexity.
+
+## PopClip Integration
+
+**Resources**:
+- PopClip developer documentation: https://www.popclip.app/dev/
+- PopClip JavaScript API reference: https://pilotmoon.github.io/popclip-types/modules.html
+- PopClip Extensions repository: /Users/shayon/DevProjects/PopClip-Extensions
+
+**Extension Structure**:
+- Create a `.popclipext` package with required files
+- Use shell script actions to interface with existing Python scripts
+- Ensure proper environment variable handling
+- Provide appropriate user feedback
+
+**Implementation Approach**:
+- Follow issue #11 for implementation details
+- Use the RunCommand extension as a reference
+- Consider both direct shell script and AppleScript approaches
+- Add `--popclip-mode` flag to enable non-interactive usage
