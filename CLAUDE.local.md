@@ -82,6 +82,36 @@ snippets-automation/
 - Use `python3` to run the script instead of `python`
 - Use `pip3` to install dependencies instead of `pip`
 
+### 4.5. Runner Script (run.sh) Usage
+
+**Script Capabilities**:
+- Handles unquoted arguments with spaces and special characters
+- Automatically activates virtual environment and loads .env variables
+- Supports multiple execution modes
+
+**Usage Patterns**:
+```bash
+# Interactive snippet creation from clipboard
+./run.sh
+
+# Direct content creation (no quotes needed)
+./run.sh 158, Front St E, Toronto ON M5A 0K9
+./run.sh git status --porcelain
+
+# Explicit Python script execution
+./run.sh python3 scripts/add_alfred_snippet.py --help
+./run.sh python3 scripts/batch_import.py data.json
+
+# Help and documentation
+./run.sh --help
+```
+
+**Argument Handling Logic**:
+- If no arguments: runs interactive clipboard mode
+- If first arg is `python3` or `bash`: executes as command with all arguments
+- Otherwise: treats all arguments as content string for snippet creation (using `"$*"`)
+- Handles EOF/Ctrl-C gracefully in interactive mode
+
 ### 4. AI Integration Patterns
 
 **Claude API Usage**:
