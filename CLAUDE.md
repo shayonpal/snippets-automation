@@ -9,6 +9,7 @@ This document contains step-by-step instructions and best practices for Claude t
 **Key Requirements**:
 - Batch creation from JSON files
 - Ad hoc creation via Raycast integration
+- PopClip integration for direct snippet creation from text selections
 - AI-powered categorization and metadata generation
 - Robust error handling and user prompts
 - Alfred compatibility and folder structure management
@@ -205,7 +206,7 @@ class DuplicateSnippetError(SnippetError): pass
 **Phase 3 (P2 Issues)**:
 1. Advanced categorization features
 2. Performance optimizations
-3. Additional input sources
+3. Additional input sources (PopClip integration)
 4. Documentation and examples
 
 ### 10. Code Review Checklist
@@ -246,3 +247,22 @@ class DuplicateSnippetError(SnippetError): pass
 - Validate JSON structure before writing
 
 Remember: Always reference GitHub issues in commits, follow the established patterns, and prioritize user experience over feature complexity.
+
+## PopClip Integration
+
+**Resources**:
+- PopClip developer documentation: https://www.popclip.app/dev/
+- PopClip JavaScript API reference: https://pilotmoon.github.io/popclip-types/modules.html
+- PopClip Extensions repository: /Users/shayon/DevProjects/PopClip-Extensions
+
+**Extension Structure**:
+- Create a `.popclipext` package with required files
+- Use shell script actions to interface with existing Python scripts
+- Ensure proper environment variable handling
+- Provide appropriate user feedback
+
+**Implementation Approach**:
+- Follow issue #11 for implementation details
+- Use the RunCommand extension as a reference
+- Consider both direct shell script and AppleScript approaches
+- Add `--popclip-mode` flag to enable non-interactive usage
