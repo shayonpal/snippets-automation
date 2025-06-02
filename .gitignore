@@ -29,4 +29,4 @@ test_*.py
 *_test.py
 
 # Temporary cleanup folder
-temp_cleanup/CLAUDE.local.md
+temp_cleanup/

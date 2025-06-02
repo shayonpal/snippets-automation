@@ -65,6 +65,14 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+**Note**: If you encounter a `ModuleNotFoundError` for the 'requests' module, recreate the virtual environment:
+```bash
+rm -rf venv
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 3. Create `.env` file with your configuration:
 ```bash
 cp .env.example .env
