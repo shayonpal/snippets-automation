@@ -1,0 +1,47 @@
+name: Add Issue to Project 5
+
+on:
+  issues:
+    types: [opened, assigned]
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add issue to Project 5
+        env:
+          GITHUB_TOKEN: ${{ secrets.PROJECT_AUTOMATION_TOKEN }}
+          PROJECT_ID: "PVT_kwHOAaarJ84A6nlf"
+          STATUS_FIELD_ID: "PVTSSF_lAHOAaarJ84A6nlfzgvKMl4"
+          BACKLOG_OPTION_ID: "7fe3ffdc"
+        run: |
+          # Add issue to project
+          item_id=$(gh api graphql -f query='
+            mutation($project:ID!, $contentId:ID!) {
+              addProjectV2ItemById(input: {projectId: $project, contentId: $contentId}) {
+                item {
+                  id
+                }
+              }
+            }' -f project=$PROJECT_ID -f contentId=${{ github.event.issue.node_id }} --jq '.data.addProjectV2ItemById.item.id')
+
+          echo "Added issue to project with item ID: $item_id"
+
+          # Set status to Backlog
+          gh api graphql -f query='
+            mutation($project:ID!, $item:ID!, $field:ID!, $value:String!) {
+              updateProjectV2ItemFieldValue(input: {
+                projectId: $project
+                itemId: $item
+                fieldId: $field
+                value: {
+                  singleSelectOptionId: $value
+                }
+              }) {
+                projectV2Item {
+                  id
+                }
+              }
+            }' -f project=$PROJECT_ID -f item=$item_id -f field=$STATUS_FIELD_ID -f value=$BACKLOG_OPTION_ID
+
+          echo "Set status to Backlog for issue: ${{ github.event.issue.title }}"
