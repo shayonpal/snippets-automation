@@ -2,11 +2,15 @@
 
 An intelligent automation system for creating and managing Alfred snippets using Anthropic's Claude API for metadata generation and categorization.
 
+[![GitHub Issues](https://img.shields.io/github/issues/shayonpal/snippets-automation)](https://github.com/shayonpal/snippets-automation/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Overview
 
-This project provides two main capabilities:
-1. **Batch creation** of Alfred snippets from a JSON file (for initial setup)
+This project provides three main capabilities:
+1. **Batch creation** of Alfred snippets from a JSON file (for initial setup or bulk imports)
 2. **Ad hoc snippet creation** via Raycast Quicklink with intelligent categorization
+3. **PopClip integration** for creating snippets directly from selected text
 
 The system leverages Claude AI to analyze snippet content and automatically suggest appropriate collections (folders), names, descriptions, and keywords based on content analysis.
 
@@ -203,6 +207,25 @@ Collections are represented as folders in the Alfred snippets directory. The sys
 - Automatically detects existing collections
 - Creates new collections when suggested by AI
 - Maintains proper folder structure for Alfred compatibility
+
+## Recent Updates
+
+- **GitHub Project Integration**: Automatic addition of new issues to Project 5 for better task tracking
+- **Dependency Management**: Fixed missing 'requests' module issue and improved virtual environment setup
+- **PopClip Extension**: Added support for creating snippets directly from text selection
+- **Enhanced CLI**: Added `--add` flag for simplified snippet creation
+- **Improved Documentation**: Comprehensive usage examples and LLM-assisted snippet generation guide
+
+## Current Development Status
+
+**Active Issues (P0/P1):**
+- #15: Implement non-interactive logic for automated workflows
+- #14: Add --popclip-mode flag for PopClip integration
+- #8: Develop comprehensive testing suite
+- #7: Enhance error handling for edge cases
+- #6: Improve user interface and prompting
+
+See all issues on [GitHub Issues](https://github.com/shayonpal/snippets-automation/issues)
 
 ## Error Handling
 
