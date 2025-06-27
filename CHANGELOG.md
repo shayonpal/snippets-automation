@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2025-06-27
+
+### Added
+- Anthropic dependency (>=0.39.0) to requirements.txt for AI-powered categorization (#285257b)
+
+### Fixed
+- Post-Syncthing incident recovery completed successfully
+  - Cleaned 558 unwanted files (Python cache and OS metadata)
+  - Verified git repository integrity - no corruption found
+  - Restored full project functionality
+
+### Maintenance
+- Performed comprehensive health check following June 26, 2025 Syncthing incident
+- Cleaned virtual environment artifacts (~7.3 MB reclaimed)
+- Optimized git repository with aggressive garbage collection
+
 ## [Unreleased] - 2025-06-24 15:04:32 EDT
 
 ### Added
